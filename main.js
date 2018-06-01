@@ -4,8 +4,10 @@ $(document).ready(function () {
     var url = prefix($('#url').val())
 
     checks.forEach(check => {
-      prepElement(check)
-      getResult(url, check)
+      if (check.active) {
+        prepElement(check)
+        getResult(url, check)
+      }
     })
   })
 })
@@ -40,7 +42,7 @@ function getResult (url, settings) {
           score = resolve(settings.quickElement, data)
           break
         case 'SINGLE':
-          score = $(settings.quickElement, $(data))[0].html()
+          score = $($(settings.quickElement, $(data))[0]).html()
           break
         case 'LIST':
           score = $(settings.quickElement, $(data)).length

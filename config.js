@@ -12,8 +12,20 @@ var checks = [ // eslint-disable-line no-unused-vars
     invert: true
   },
   {
+    name: 'cssvalidator',
+    niceName: 'W3C CSS Validator',
+    active: true,
+    quickURL: 'http://jigsaw.w3.org/css-validator/validator?uri=[URL]',
+    quickType: 'LIST',
+    quickElement: 'tr.error',
+    critical: 20,
+    warning: 10,
+    invert: true
+  },
+  {
     name: 'pagespeed',
     niceName: 'PageSpeed Insights',
+    active: true,
     quickURL: 'https://www.googleapis.com/pagespeedonline/v4/runPagespeed?url=[URL]',
     quickType: 'JSON',
     quickElement: 'ruleGroups.SPEED.score',
@@ -26,6 +38,7 @@ var checks = [ // eslint-disable-line no-unused-vars
   {
     part: 'mobile-friendly',
     niceName: 'Mobile-Friendly Test',
+    active: true,
     quickURL: 'https://searchconsole.googleapis.com/v1/urlTestingTools/mobileFriendlyTest:run?key=' + keys.searchconsolegoogleapiscom,
     quickMethod: 'POST',
     quickRequest: {url: '[URL]', requestScreenshot: false},
@@ -35,5 +48,27 @@ var checks = [ // eslint-disable-line no-unused-vars
     critical: 'NOT_MOBILE_FRIENDLY',
     warning: 'MOBILE_FRIENDLY_TEST_RESULT_UNSPECIFIED',
     noIntScore: true
+  },
+  {
+    name: 'acchecker',
+    niceName: 'Web Accessibility Checker ',
+    active: false,
+    quickURL: 'https://achecker.ca/checkacc.php?uri=[URL]&id=' + keys.acchecker,
+    quickType: 'LIST',
+    quickElement: '.msg_err',
+    critical: 10,
+    warning: 1,
+    invert: true
+  },
+  {
+    name: 'wave',
+    niceName: 'WAVE Web Accessibility Evaluation Tool',
+    active: false,
+    quickURL: 'http://wave.webaim.org/report#/[URL]',
+    quickType: 'SINGLE',
+    quickElement: '#error span',
+    critical: 10,
+    warning: 1,
+    invert: true
   }
 ]
